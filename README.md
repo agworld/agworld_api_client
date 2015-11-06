@@ -8,4 +8,5 @@ Testing Modules:
 - Company
 - Property
 - Paddock
+- Planned Season
 - ...
