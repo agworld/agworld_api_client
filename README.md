@@ -2,7 +2,9 @@ Using JsonApiClient to test Agword API return with jsonapi format on hackathon.
 
 # Installation
   You must install json_api_client gem because we will use it.
-  `gem install json_api_client`
+``` Ruby
+  gem install json_api_client
+```
 
 #References
   Some references to gem that we used and jsonapi format.
