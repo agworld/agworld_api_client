@@ -1,10 +1,12 @@
 Using JsonApiClient to test Agword API return with jsonapi format on hackathon.
 
 #Reference
-Jsonapi: http://jsonapi.org/
-JsonApiClient: https://github.com/chingor13/json_api_client
+  Some references to gem that we used and jsonapi format.
+  Jsonapi: http://jsonapi.org/
+  JsonApiClient: https://github.com/chingor13/json_api_client
 
-#Testing Modules
+#Testing Module
+  Currently we implementing in some model in agworld/website
 - Company
 - Property
 - Paddock
@@ -12,10 +14,13 @@ JsonApiClient: https://github.com/chingor13/json_api_client
 - Planned Season
 - Activity
 - Product
+- Segment
+- Crop Variety
+- PaddockPlan
 
 
 #Example Module
-
+  We are using `gem 'json_api_client'` to implement in client library, and using `gem 'jsonapi-resources'` in server library, this is an example in client
 ``` Ruby
 require "json_api_client"
 
@@ -39,6 +44,7 @@ end
 
 
 #Basic Example
+  A few example to implement the module for finding, filtering, pagination and relationship to other model.
   ``` Ruby
   # Find company by id GET request /companies/5313
   MyApi::Company.find(5313)
