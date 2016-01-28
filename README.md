@@ -1,68 +1,51 @@
-Using JsonApiClient to test Agword API return with jsonapi format on hackathon.
+# agworld
 
-# Installation
-  You must install json_api_client gem because we will use it.
-``` Ruby
-  gem install json_api_client
-```
+Ruby bindings for the Agworld API (https://my.agworld.co) using the json_api_client gem.
 
-#References
-  Some references to gem that we used and jsonapi format.
-- Jsonapi: http://jsonapi.org/
-- JsonApiClient: https://github.com/chingor13/json_api_client
+# Links
 
-#Testing Module
-  Currently we implementing in some model in agworld/website
-- Company
-- Property
-- Paddock
-- Paddock Summary
-- Planned Season
-- Activity
-- Product
-- Segment
-- Crop Variety
-- PaddockPlan
+[API Docs](https://my.agworld.com.au/docs/user_api/v1/docs)
+[JSON Api Spec](http://jsonapi.org/)
+[json_api_client](https://github.com/chingor13/json_api_client)
 
+## Installation
 
-#Example Module
-  We are using `gem 'json_api_client'` to implement in client library, and using `gem 'jsonapi-resources'` in server library, this is an example in client
-``` Ruby
-require "json_api_client"
+    gem install agworld
 
-module MyApi
-  # this is an "abstract" base class that
-  class Base < JsonApiClient::Resource
-    # set the api base url in an abstract base class
-    self.site = "http://localhost:3000/public_api/"
-  end
+Using bundler:
 
-  class Company < Base
-  end
+    gem 'agworld', '~> 0.1.0'
 
-  class Property < Base
-  end
+## Basic Usage
 
-  class Paddock < Base
-  end
-end
-```
+### Configuration
 
+    agworld_client = Agworld::Client.new(url: 'https://my.agworld.com.au/user_api/v1', api_token: 'secret_token')
 
-#Basic Example
-  A few example to implement the module for finding, filtering, pagination and relationship to other model.
-  ``` Ruby
-  # Find company by id GET request /companies/5313
-  MyApi::Company.find(5313)
-  
-  # Filtering company  by company type  GET request /companies?filter[company_type]=Consultant
-  MyApi::Company.where(company_type: 'Consultant').all
-  
-  # Include property as relationship with paddock GET request /paddocks/111564?includes=property
-  MyApi::Paddock.includes(:property).find(111564)
-  
-  # Pagination in paddock model GET request /paddocks?page=2&per_page=5
-  MyApi::Paddock.page(2).per(5).to_a
-  
-  
-  ```
+You can generate an `api_token` from your account settings page after you have logged in.
+
+### Resources
+
+The Agworld API is currently **Read Only**
+
+Resources this API supports:
+
+    http://localhost:3000/user_api/v1/docs#companies
+    http://localhost:3000/user_api/v1/docs#farms
+    http://localhost:3000/user_api/v1/docs#fields
+
+### Fetching all records
+
+    fields = agworld_client.field.all
+
+### Fetching a single record
+
+    field = agworld_client.field.find(1).first
+
+### Sideloading a relationship
+
+    field = agworld_client.field.includes(:farm).find(1).first
+
+### Pagination
+
+    fields = agworld_client.field.paginate(page: 1, per_page: 5).all
