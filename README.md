@@ -36,16 +36,16 @@ Resources this API supports:
 
 ### Fetching all records
 
-    fields = agworld_client.field.all
+    fields = agworld_client.fields.all
 
 ### Fetching a single record
 
-    field = agworld_client.field.find(1).first
+    field = agworld_client.fields.find(1).first
 
 ### Sideloading a relationship
 
-    field = agworld_client.field.includes(:farm).find(1).first
+    field = agworld_client.fields.includes(:farm).find(1).first
 
 ### Pagination
 
-    fields = agworld_client.field.paginate(page: 1, per_page: 5).all
+    fields = agworld_client.fields.paginate(page: 1, per_page: 5).all

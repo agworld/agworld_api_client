@@ -8,16 +8,24 @@ module Agworld
       Agworld::Endpoints::Base.site = "#{url}?api_token=#{api_token}"
     end
 
-    def company
+    def companies
       Agworld::Endpoints::Company
     end
 
-    def farm
+    def farms
       Agworld::Endpoints::Farm
     end
 
-    def field
+    def fields
       Agworld::Endpoints::Field
+    end
+
+    def seasons
+      Agworld::Endpoints::Season
+    end
+
+    def activities
+      Agworld::Endpoints::Activity
     end
   end
 end

@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name        = 'agworld'
   spec.version     = Agworld::VERSION
   spec.authors     = ['Agworld Developers']
-  spec.email       = ['developers@agworld.com.au']
-  spec.homepage    = 'https://www.agworld.com.au'
+  spec.email       = ['support@agworld.co']
+  spec.homepage    = 'http://www.agworld.co/'
   spec.summary     = %q(Ruby bindings for the Agworld API)
-  spec.description = %Q(Agworld is a farm information management tool. See https://my.agworld.com.au/user_api/v1/docs for more details on the api docs.)
+  spec.description = %Q(Agworld is a farm information management system. See https://us.agworld.co/user_api/v1/docs for more details on the api docs.)
   spec.license     = 'MIT'
 
   spec.files         = `git ls-files`.split("\n")
