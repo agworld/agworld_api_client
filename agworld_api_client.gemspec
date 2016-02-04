@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path('../lib', __FILE__)
 
-require 'agworld/version'
+require 'agworld_api/version'
 
 Gem::Specification.new do |spec|
-  spec.name        = 'agworld'
-  spec.version     = Agworld::VERSION
-  spec.authors     = ['Agworld Developers']
+  spec.name        = 'agworld_api_client'
+  spec.version     = AgworldApi::VERSION
+  spec.authors     = ['AgworldApi Developers']
   spec.email       = ['support@agworld.co']
   spec.homepage    = 'http://www.agworld.co/'
-  spec.summary     = %q(Ruby bindings for the Agworld API)
-  spec.description = %Q(Agworld is a farm information management system. See https://us.agworld.co/user_api/v1/docs for more details on the api docs.)
+  spec.summary     = %q(Ruby bindings for the AgworldApi API)
+  spec.description = %Q(AgworldApi is a farm information management system. See https://us.agworld.co/user_api/v1/docs for more details on the api docs.)
   spec.license     = 'MIT'
 
   spec.files         = `git ls-files`.split("\n")

@@ -1,4 +1,4 @@
-module Agworld
+module AgworldApi
   module Endpoints
     class Season < Base
     end

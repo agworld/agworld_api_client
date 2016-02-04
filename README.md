@@ -1,4 +1,4 @@
-# agworld
+# agworld_api_client
 
 Ruby bindings for the Agworld API (https://my.agworld.co) using the json_api_client gem.
 
@@ -10,17 +10,17 @@ Ruby bindings for the Agworld API (https://my.agworld.co) using the json_api_cli
 
 ## Installation
 
-    gem install agworld
+    gem install agworld_api_client
 
 Using bundler:
 
-    gem 'agworld', '~> 0.1.0'
+    gem 'agworld_api_client', '~> 0.1.0'
 
 ## Basic Usage
 
 ### Configuration
 
-    agworld_client = Agworld::Client.new(url: 'https://my.agworld.com.au/user_api/v1', api_token: 'secret_token')
+    agworld_client = AgworldApi::Client.new(url: 'https://my.agworld.com.au/user_api/v1', api_token: 'secret_token')
 
 You can generate an `api_token` from your account settings page after you have logged in.
 
