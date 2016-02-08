@@ -1,51 +1,105 @@
-# agworld_api_client
+# Agworld Api Client
 
-Ruby bindings for the Agworld API (https://my.agworld.co) using the json_api_client gem.
+## Background Information
 
-# Links
+### What is Agworld?
+Agworld is a farm information management system used by Farmers, Agronomists, Retailers, Suppliers and Contractors. It is a cloud-based platform that helps improve the world of agriculture. See more at http://www.agworld.co/.
 
-[API Docs](https://my.agworld.com.au/docs/user_api/v1/docs)
-[JSON Api Spec](http://jsonapi.org/)
-[json_api_client](https://github.com/chingor13/json_api_client)
+### Purpose of this Gem
+This gem is an example of how you would use the [json_api_client](https://github.com/chingor13/json_api_client) gem which is itself a Ruby implemention of the [JSON Api](http://jsonapi.org) specification. Consider this a reference client that gets you started, but defer to [json_api_client](https://github.com/chingor13/json_api_client) and [JSON Api](http://jsonapi.org) as your requirements become more detailed.
 
-## Installation
+### Links
+* Agworld Api Documentation (v1) - https://us.agworld.co/docs/user_api/v1/docs
+* JSON Api Specification - http://jsonapi.org
+* json_api_client - https://github.com/chingor13/json_api_client
 
-    gem install agworld_api_client
+## Getting started
 
-Using bundler:
+### Installation
+
+##### When Tinkering
+
+    $ git clone git@github.com:agworld/agworld_api_client.git
+    $ cd agworld_api_client
+    $ bundle install
+    $ bundle exec irb
+    > require 'agworld_api'
+    > ...
+
+##### When Using Bundler
 
     gem 'agworld_api_client', '~> 0.1.0'
 
+    # How to require when using it:
+    require 'agworld_api'
+
+##### Configuration
+
+    > agworld_client = AgworldApi::Client.new(url: 'https://us.agworld.co/user_api/v1', api_token: 'secret_token')
+
+You can generate an `api_token` on your user preferences page which can be accessed in Agworld after logging in via "Account Settings" (in the top right) -> "Account Settings - Edit". 
+
 ## Basic Usage
-
-### Configuration
-
-    agworld_client = AgworldApi::Client.new(url: 'https://my.agworld.com.au/user_api/v1', api_token: 'secret_token')
-
-You can generate an `api_token` from your account settings page after you have logged in.
 
 ### Resources
 
 The Agworld API is currently **Read Only**
 
-Resources this API supports:
+Resources the API currently supports:
 
-    http://localhost:3000/user_api/v1/docs#companies
-    http://localhost:3000/user_api/v1/docs#farms
-    http://localhost:3000/user_api/v1/docs#fields
+* Companies
+* Farms (Properties)
+* Fields (Paddocks)
+* Seasons
+* Activities
 
-### Fetching all records
+### Usage examples for Fields (Paddocks)
 
-    fields = agworld_client.fields.all
+##### Fetching all records (paginated by default)
 
-### Fetching a single record
+    > fields = agworld_client.fields.all
+    [
+        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"123",...}>,
+        ...
+    ]
 
-    field = agworld_client.fields.find(1).first
+##### Fetching a single record
 
-### Sideloading a relationship
+    > field = agworld_client.fields.find(123).first
+    #<AgworldApi::Endpoints::Field:@attributes={"id"=>"123",...
 
-    field = agworld_client.fields.includes(:farm).find(1).first
+##### Fetching data while specifying the season in a parameter
 
-### Pagination
+    > fields = agworld_client.fields.with_params(season_id: 456).all
+    [
+        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"123",...}>,
+        ...
+    ]
 
-    fields = agworld_client.fields.paginate(page: 1, per_page: 5).all
+##### Filtering
+
+    > fields = agworld_client.fields.where(company_id: 789).all
+    [
+        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"123",...}>,
+        ...
+    ]
+
+##### Sorting/Ordering
+
+    > fields = agworld_client.fields.where(company_id: 789).order(created_at: :desc).all
+    [
+        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"111",...}>,
+        ...
+    ]
+
+##### Sideloading a relationship (includes)
+
+    # This makes a request to: /user_api/v1/fields?include=farm
+    > fields = agworld_client.fields.includes(:farm).all
+
+    # This doesn't make an additional request to the server:
+    > farms = fields.map(&:farm)
+
+##### Pagination
+
+    > fields = agworld_client.fields.paginate(page: 2, per_page: 5).all

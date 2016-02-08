@@ -1,11 +1,14 @@
-require_relative 'agworld_api/version'
-require_relative 'agworld_api/endpoints/base'
-require_relative 'agworld_api/endpoints/company'
-require_relative 'agworld_api/endpoints/farm'
-require_relative 'agworld_api/endpoints/field'
-require_relative 'agworld_api/endpoints/season'
-require_relative 'agworld_api/endpoints/activity'
-require_relative 'agworld_api/client'
+require 'json_api_client'
+
+require 'agworld_api/query/additional_param_builder'
+require 'agworld_api/endpoints/base'
+
+# Require all the individual endpoints:
+Dir[File.join(File.dirname(__FILE__), "/agworld_api/endpoints/*.rb")].each do |path|
+  require path
+end
+
+require 'agworld_api/client'
 
 module AgworldApi
 end
