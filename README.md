@@ -53,7 +53,7 @@ Resources the API currently supports:
 * Seasons
 * Activities
 
-### Example usages for Fields (Paddocks)
+### Usage examples for Fields (Paddocks)
 
 ##### Fetching all records (paginated by default)
 
