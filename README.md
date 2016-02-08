@@ -6,7 +6,7 @@
 Agworld is a farm information management system used by Farmers, Agronomists, Retailers, Suppliers and Contractors. It is a cloud-based platform that helps improve the world of agriculture. See more at http://www.agworld.co/.
 
 ### Purpose of this Gem
-This gem is an example of how you would use the [json_api_client](https://github.com/chingor13/json_api_client) gem which is itself a Ruby implemention of the [JSON Api](http://jsonapi.org) spec. Consider this a reference client that gets you started, but defer to [json_api_client](https://github.com/chingor13/json_api_client) and [JSON Api](http://jsonapi.org) as your requirements become more detailed.
+This gem is an example of how you would use the [json_api_client](https://github.com/chingor13/json_api_client) gem which is itself a Ruby implemention of the [JSON Api](http://jsonapi.org) specification. Consider this a reference client that gets you started, but defer to [json_api_client](https://github.com/chingor13/json_api_client) and [JSON Api](http://jsonapi.org) as your requirements become more detailed.
 
 ### Links
 * Agworld Api Documentation (v1) - https://us.agworld.co/docs/user_api/v1/docs
@@ -20,21 +20,22 @@ This gem is an example of how you would use the [json_api_client](https://github
 ##### When Tinkering
 
     $ git clone git@github.com:agworld/agworld_api_client.git
+    $ cd agworld_api_client
     $ bundle install
-    $ irb
-    > require './lib/agworld_api'
-    > 
+    $ bundle exec irb
+    > require 'agworld_api'
+    > ...
 
 ##### When Using Bundler
 
     gem 'agworld_api_client', '~> 0.1.0'
 
-    # How to require:
+    # How to require when using it:
     require 'agworld_api'
 
 ##### Configuration
 
-    agworld_client = AgworldApi::Client.new(url: 'https://us.agworld.co/user_api/v1', api_token: 'secret_token')
+    > agworld_client = AgworldApi::Client.new(url: 'https://us.agworld.co/user_api/v1', api_token: 'secret_token')
 
 You can generate an `api_token` on your user preferences page which can be accessed in Agworld after logging in via "Account Settings" (in the top right) -> "Account Settings - Edit". 
 
@@ -58,36 +59,36 @@ Resources the API currently supports:
 
     > fields = agworld_client.fields.all
     [
-        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"231747",...}>,
+        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"123",...}>,
         ...
     ]
 
 ##### Fetching a single record
 
-    > field = agworld_client.fields.find(231747).first
-    #<AgworldApi::Endpoints::Field:@attributes={"id"=>"231747",...
+    > field = agworld_client.fields.find(123).first
+    #<AgworldApi::Endpoints::Field:@attributes={"id"=>"123",...
 
 ##### Fetching data while specifying the season in a parameter
 
-    > fields = agworld_client.fields.with_params(season_id: 39612).all
+    > fields = agworld_client.fields.with_params(season_id: 456).all
     [
-        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"231747",...}>,
+        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"123",...}>,
         ...
     ]
 
 ##### Filtering
 
-    > fields = agworld_client.fields.where(company_id: 20140).all
+    > fields = agworld_client.fields.where(company_id: 789).all
     [
-        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"231747",...}>,
+        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"123",...}>,
         ...
     ]
 
 ##### Sorting/Ordering
 
-    > fields = agworld_client.fields.where(company_id: 20140).order(created_at: :desc).all
+    > fields = agworld_client.fields.where(company_id: 789).order(created_at: :desc).all
     [
-        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"429853",...}>,
+        [0] #<AgworldApi::Endpoints::Field:@attributes={"id"=>"111",...}>,
         ...
     ]
 
