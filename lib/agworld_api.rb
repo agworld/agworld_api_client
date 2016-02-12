@@ -1,6 +1,5 @@
 require 'json_api_client'
 
-require 'agworld_api/query/additional_param_builder'
 require 'agworld_api/endpoints/base'
 
 # Require all the individual endpoints:
