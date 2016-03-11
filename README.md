@@ -9,7 +9,7 @@ Agworld is a farm information management system used by Farmers, Agronomists, Re
 This gem is an example of how you would use the [json_api_client](https://github.com/chingor13/json_api_client) gem which is itself a Ruby implemention of the [JSON Api](http://jsonapi.org) specification. Consider this a reference client that gets you started, but defer to [json_api_client](https://github.com/chingor13/json_api_client) and [JSON Api](http://jsonapi.org) as your requirements become more detailed.
 
 ### Links
-* Agworld Api Documentation (v1) - https://us.agworld.co/docs/user_api/v1/docs
+* Agworld Api Documentation (v1) - https://us.agworld.co/user_api/v1/docs
 * JSON Api Specification - http://jsonapi.org
 * json_api_client - https://github.com/chingor13/json_api_client
 
